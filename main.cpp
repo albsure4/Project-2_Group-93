@@ -9,7 +9,7 @@
 #include "dataEntries.h"
 
 
-void handleInternalCommas(std::stringstream& stream, std::string& parsed, std::string& garbage) {
+void handleInternalCommas(std::stringstream& stream, std::string& parsed, std::string garbage) {
     while(parsed[0] == '"' and parsed.back() != '"'){
         getline(stream, garbage, ',');
         parsed.append(',' + garbage);
