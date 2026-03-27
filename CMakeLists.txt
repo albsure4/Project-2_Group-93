@@ -4,7 +4,8 @@ project(MyProject)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(MyProject main.cpp
-        dataEntries.h
-        dataEntries.cpp)
+        DataEntries.h
+        DataEntries.cpp
+        QuickSort.h)
 
 file(COPY Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
