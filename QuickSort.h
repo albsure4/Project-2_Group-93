@@ -5,45 +5,38 @@
 #ifndef QUICKSORT_H
 #define QUICKSORT_H
 
-#endif //QUICKSORT_H
-//
-// Created by ticol on 3/26/2026.
-//
 #include <iostream>
 #include <vector>
 #include "DataEntries.h"
 
-
+//helper function to swap two videos within the vector of videos
 void swap(std::vector<dataEntries>& listOfVideos, int index1, int index2) {
-    dataEntries temp(listOfVideos[index1].title, listOfVideos[index1].views, listOfVideos[index1].likes, listOfVideos[index1].comments, listOfVideos[index1].category, listOfVideos[index1].channel);
+    dataEntries temp = listOfVideos[index1];
     listOfVideos[index1] = listOfVideos[index2];
     listOfVideos[index2] = temp;
 }
 
-
-
-//Referenced DSA Sp26 - Thu Lecture-  Mar 5 , 2026 09:34 AM
+//selects a pivot point and sorts listOfVideos in descending order
 int partition(const std::string& type, std::vector<dataEntries>& listOfVideos, int low, int high) {
-
     if (type == "views") {
         int pivot = listOfVideos[low].views;
-        int up = low, down = high;
+        int up = low + 1;
+        int down = high;
 
-        while(up < down) {
-            for(int i = up; i < high; i++) {
-                if(listOfVideos[up].views > pivot) {
-                    break;
-                }
+        while (up <= down) {
+            while (up <= high && listOfVideos[up].views > pivot) {
                 up++;
             }
-            for (int i = high; i > low; i--) {
-                if(listOfVideos[down].views < pivot) {
-                    break;
-                }
+            while (down > low && listOfVideos[down].views < pivot) {
                 down--;
             }
-            if(up < down) {
+            if (up < down) {
                 swap(listOfVideos, up, down);
+                up++;
+                down--;
+            }
+            else {
+                break;
             }
         }
         swap(listOfVideos, low, down);
@@ -51,23 +44,23 @@ int partition(const std::string& type, std::vector<dataEntries>& listOfVideos, i
     }
     if (type == "likes") {
         int pivot = listOfVideos[low].likes;
-        int up = low, down = high;
+        int up = low + 1;
+        int down = high;
 
-        while(up < down) {
-            for(int i = up; i < high; i++) {
-                if(listOfVideos[up].likes > pivot) {
-                    break;
-                }
+        while (up <= down) {
+            while (up <= high && listOfVideos[up].likes > pivot) {
                 up++;
             }
-            for (int i = high; i > low; i++) {
-                if(listOfVideos[down].likes < pivot) {
-                    break;
-                }
+            while (down > low && listOfVideos[down].likes < pivot) {
                 down--;
             }
-            if(up < down) {
+            if (up < down) {
                 swap(listOfVideos, up, down);
+                up++;
+                down--;
+            }
+            else {
+                break;
             }
         }
         swap(listOfVideos, low, down);
@@ -75,38 +68,38 @@ int partition(const std::string& type, std::vector<dataEntries>& listOfVideos, i
     }
     if (type == "comments") {
         int pivot = listOfVideos[low].comments;
-        int up = low, down = high;
+        int up = low + 1;
+        int down = high;
 
-        while(up < down) {
-            for(int i = up; i < high; i++) {
-                if(listOfVideos[up].comments > pivot) {
-                    break;
-                }
+        while (up <= down) {
+            while (up <= high && listOfVideos[up].comments > pivot) {
                 up++;
             }
-            for (int i = high; i > low; i++) {
-                if(listOfVideos[down].comments < pivot) {
-                    break;
-                }
+            while (down > low && listOfVideos[down].comments < pivot) {
                 down--;
             }
-            if(up < down) {
+            if (up < down) {
                 swap(listOfVideos, up, down);
+                up++;
+                down--;
+            }
+            else {
+                break;
             }
         }
         swap(listOfVideos, low, down);
         return down;
     }
+    return low;
 }
 
-
+//recursive function to run each pass of the quicksort method and sort in descending order by type
 void quickSort(const std::string& type, std::vector<dataEntries>& listOfVideos, int low, int high) {
-    if(low < high) {
-        if (type == "views") {
-            int pivot = partition(type, listOfVideos, low, high);
-            quickSort(type, listOfVideos, low, pivot - 1);
-            quickSort(type, listOfVideos, pivot + 1, high);
-        }
+    if (low < high) {
+        int pivotIndex = partition(type, listOfVideos, low, high);
+        quickSort(type, listOfVideos, low, pivotIndex - 1);
+        quickSort(type, listOfVideos, pivotIndex + 1, high);
     }
 }
 
+#endif // QUICKSORT_H

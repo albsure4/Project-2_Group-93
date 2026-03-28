@@ -8,7 +8,7 @@
 #include <iostream>
 #include <utility>
 
-
+//stores each video as an object with its statistics as accessible attributes
 struct dataEntries {
 std::string title;
 int views;
@@ -18,8 +18,10 @@ int category;
 std::string categoryName;
 std::string channel;
 
+
     dataEntries(std::string  Title,const int& Views,const int& Likes,const int& Comments,const int& Category, std::string  Channel) : title(std::move(Title)),
 views(Views), likes(Likes), comments(Comments), category(Category), channel(std::move(Channel)) {
+        //constructor takes in category id and converts to corresponding category name
         if (category == 1)
             categoryName = "Film & Animation";
         if (category == 2)
