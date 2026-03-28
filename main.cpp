@@ -8,6 +8,7 @@
 
 #include "DataEntries.h"
 #include "QuickSort.h"
+#include "HeapSort.h"
 
 void handleInternalCommas(std::stringstream& stream, std::string& parsed, std::string garbage) {
     while(parsed[0] == '"' and parsed.back() != '"'){
@@ -156,10 +157,25 @@ std::string displayType;
 std::cin >> displayType;
 if (stoi(algo) == 2) {
     int n = listOfVideos.size();
-    quickSort(sortByType, listOfVideos, 0, n - 1);
     if (stoi(sortByType) == 1) {
+        quickSort("views", listOfVideos, 0, n - 1);
         for (int i = 0; i < 10; i++) {
-            std::cout << listOfVideos[i].channel;
+            std::cout << i + 1 << ". " << listOfVideos[i].channel << std::endl;
+        }
+    }
+}
+else if (stoi(algo) == 1) {
+    //int n = listOfVideos.size();
+    if (stoi(sortByType) == 1){
+        heapSort("views", listOfVideos);
+        for (int i = 0; i < 10; i++) {
+            std::cout << i + 1 << ". " << listOfVideos[i].channel << std::endl;
+        }
+    }
+    else if (stoi(sortByType) == 2) {
+        heapSort("likes", listOfVideos);
+        for (int i = 0; i < 10; i++) {
+            std::cout << i + 1 << ". " << listOfVideos[i].channel << std::endl;
         }
     }
 }

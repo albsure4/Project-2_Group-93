@@ -36,7 +36,7 @@ int partition(const std::string& type, std::vector<dataEntries>& listOfVideos, i
                 }
                 up++;
             }
-            for (int i = high; i > low; i++) {
+            for (int i = high; i > low; i--) {
                 if(listOfVideos[down].views < pivot) {
                     break;
                 }

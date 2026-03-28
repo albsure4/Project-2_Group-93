@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(MyProject main.cpp
         DataEntries.h
         DataEntries.cpp
-        QuickSort.h)
+        QuickSort.h
+        HeapSort.h)
 
 file(COPY Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
