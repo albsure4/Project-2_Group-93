@@ -11,10 +11,10 @@
 
 void heapifyDown(const std::string& type, std::vector<dataEntries>& videos, int index, int size)
 {
-	int smallest = index;
 
 	while (true)
 	{
+		int smallest = index;
 		int left = 2*index + 1;
 		int right = 2*index + 2;
 
@@ -56,7 +56,7 @@ void extractMin(const std::string& type, std::vector<dataEntries>& videos, int s
 
 void heapSort(const std::string& type, std::vector<dataEntries>& videos)
 {
-	for (int i = videos.size()/2; i >= 0; i--)
+	for (int i = videos.size()/2 - 1; i >= 0; i--)
 		heapifyDown(type, videos, i, videos.size());
 	/*for (auto element : vec)
 		cout << element << " ";
