@@ -16,6 +16,7 @@ void swap(std::vector<dataEntries>& listOfVideos, int index1, int index2) {
     listOfVideos[index2] = temp;
 }
 
+//Referenced DSA Sp26 - Thu Lecture-  Mar 5 , 2026 09:34 AM
 //selects a pivot point and sorts listOfVideos in descending order
 int partition(const std::string& type, std::vector<dataEntries>& listOfVideos, int low, int high) {
     if (type == "views") {
