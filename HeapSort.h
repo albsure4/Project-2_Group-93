@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "DataEntries.h"
 
+//restores heap order
 void heapifyDown(const std::string& type, std::vector<dataEntries>& videos, int index, int size)
 {
 
@@ -48,19 +49,18 @@ void heapifyDown(const std::string& type, std::vector<dataEntries>& videos, int 
 	}
 }
 
+//swaps minimum element to heap end then restores heap order
 void extractMin(const std::string& type, std::vector<dataEntries>& videos, int size)
 {
 	std::swap(videos[0], videos[size - 1]);
 	heapifyDown(type, videos, 0, size - 1);
 }
 
+//Sorts videos in descending order through a min-heap and extracting min
 void heapSort(const std::string& type, std::vector<dataEntries>& videos)
 {
 	for (int i = videos.size()/2 - 1; i >= 0; i--)
 		heapifyDown(type, videos, i, videos.size());
-	/*for (auto element : vec)
-		cout << element << " ";
-	cout << endl;*/
 
 	int size = videos.size();
 
@@ -68,8 +68,5 @@ void heapSort(const std::string& type, std::vector<dataEntries>& videos)
 	{
 		extractMin(type, videos, size);
 		size--;
-		/*for (auto element : vec)
-			cout << element << " ";
-		cout << endl;*/
 	}
 }

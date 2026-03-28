@@ -11,6 +11,7 @@
 #include "QuickSort.h"
 #include "HeapSort.h"
 
+//helper function for parsing case where comma(s) reside within a csv field/cell
 void handleInternalCommas(std::stringstream& stream, std::string& parsed, std::string garbage) {
     while(parsed[0] == '"' and parsed.back() != '"'){
         getline(stream, garbage, ',');
@@ -18,6 +19,7 @@ void handleInternalCommas(std::stringstream& stream, std::string& parsed, std::s
     }
 }
 
+//handles parsing, dataEntry object creation, and vector of dataEntries (YouTube videos) creation
 void readFromFile(std::string fileName, std::vector<dataEntries>& videos) {
     std::string text;
     std::ifstream inFile(fileName);
@@ -62,13 +64,7 @@ void readFromFile(std::string fileName, std::vector<dataEntries>& videos) {
                 handleInternalCommas(stream, garbage, garbage);
             }
         }
-        /*std::cout << title << std::endl;
-            std::cout << views << std::endl;
-            std::cout << likes << std::endl;
-            std::cout << comments << std::endl;
-            std::cout << category << std::endl;
-            std::cout << channel << std::endl << std::endl;
-            std::cout << stream.str() << std::endl;*/
+
         dataEntries trendingVideo(title, stoi(views), stoi(likes), stoi(comments), stoi(category), channel);
         videos.push_back(trendingVideo);
     }
@@ -77,18 +73,12 @@ void readFromFile(std::string fileName, std::vector<dataEntries>& videos) {
 
 int main(){
 
-/*
-
-while (getline(readFile, text)){
-    std::cout << text;
-}
-*/
 std::vector<dataEntries> listOfVideos; //create vector of class objects where an object is a singular trending video
 
 std::cout << "Welcome to our Project!\n\n";
 std::cout << "* In order to make a selection, please type the number corresponding to it *\n\n";
 std::cout << "Please select a country:\n";
-std::cout << "1. United States\n2. Brazil\n3. Canada\n4. Germany\n5. France\n6. United Kingdom\n7. India\n8. Japan\n9. South Korea\n10. Mexico\n11. Russia\n12. All\n\n";
+std::cout << "1. United States\n2. Brazil\n3. Canada\n4. Germany\n5. France\n6. United Kingdom\n7. Japan\n8. South Korea\n9. Mexico\n10. Russia\n11. All\n\n";
 
 std::string country;
 while (true){ // make sure number is between 1-11, else: retake input
@@ -102,6 +92,7 @@ while (true){ // make sure number is between 1-11, else: retake input
 
 std::string fileName;
 
+//read from data file based on user input
 if (country == "1") {
     readFromFile("Data/US_Trending.csv", listOfVideos);
 }
@@ -112,7 +103,6 @@ else if (country == "3") {
     readFromFile("Data/CA_Trending.csv", listOfVideos);
 }
 else if (country == "4") {
-    std::cout << "hello";
     readFromFile("Data/DE_Trending.csv", listOfVideos);
 }
 else if (country == "5") {
@@ -122,85 +112,32 @@ else if (country == "6") {
     readFromFile("Data/GB_Trending.csv", listOfVideos);
 }
 else if (country == "7") {
-    readFromFile("Data/IN_Trending.csv", listOfVideos);
-}
-else if (country == "8") {
     readFromFile("Data/JP_Trending.csv", listOfVideos);
 }
-else if (country == "9") {
+else if (country == "8") {
     readFromFile("Data/KR_Trending.csv", listOfVideos);
 }
-else if (country == "10") {
+else if (country == "9") {
     readFromFile("Data/MX_Trending.csv", listOfVideos);
 }
-else if (country == "11") {
+else if (country == "10") {
     readFromFile("Data/RU_Trending.csv", listOfVideos);
 }
-else if (country == "12"){
+else if (country == "11"){
     readFromFile("Data/US_Trending.csv", listOfVideos);
     readFromFile("Data/BR_Trending.csv", listOfVideos);
     readFromFile("Data/CA_Trending.csv", listOfVideos);
     readFromFile("Data/DE_Trending.csv", listOfVideos);
     readFromFile("Data/FR_Trending.csv", listOfVideos);
     readFromFile("Data/GB_Trending.csv", listOfVideos);
-    //readFromFile("Data/IN_Trending.csv", listOfVideos);
     readFromFile("Data/JP_Trending.csv", listOfVideos);
     readFromFile("Data/KR_Trending.csv", listOfVideos);
     readFromFile("Data/MX_Trending.csv", listOfVideos);
     readFromFile("Data/RU_Trending.csv", listOfVideos);
 }
 
-std::ifstream readFile(fileName);
-
 if (listOfVideos.empty())
     return 0;
-
-/*getline(readFile, text); //ignore the first line which has the column titles
-while (getline(readFile, text)){
-    std::stringstream stream(text);
-    std::string title;
-    std::string views;
-    std::string likes;
-    std::string comments;
-    std::string category;
-    std::string channel;
-    std::string garbage; //store video data we don't need here to keep parsing
-    for (int i = 0; i < 13; i++) {
-        if (i == 2) {
-            getline(stream, title, ',');
-            handleInternalCommas(stream, title, garbage);
-        }
-        else if (i == 3) {
-            getline(stream, channel, ',');
-            handleInternalCommas(stream, channel, garbage);
-        }
-        else if (i == 4) {
-            getline(stream, views, ',');
-        }
-        else if (i == 5) {
-            getline(stream, likes, ',');
-        }
-        else if (i == 8) {
-            getline(stream, category, ',');
-        }
-        else if (i == 10) {
-            getline(stream, comments, ',');
-        }
-        else {
-            getline(stream, garbage, ',');
-            handleInternalCommas(stream, garbage, garbage);
-        }
-    }
-    /*std::cout << title << std::endl;
-        std::cout << views << std::endl;
-        std::cout << likes << std::endl;
-        std::cout << comments << std::endl;
-        std::cout << category << std::endl;
-        std::cout << channel << std::endl << std::endl;
-        std::cout << stream.str() << std::endl;#1#
-    dataEntries trendingVideo(title, stoi(views), stoi(likes), stoi(comments), stoi(category), channel);
-    listOfVideos.push_back(trendingVideo);
-}*/
 
 std::cout << "Select a sorting algorithm\n\n";
 std::cout << "1. HeapSort\n";
@@ -232,9 +169,9 @@ if (stoi(algo) == 2) {
     auto start = std::chrono::high_resolution_clock::now(); // retrieved clock function from https://www.geeksforgeeks.org/cpp/measure-execution-time-function-cpp/
     if (stoi(sortByType) == 1)
         quickSort("views", listOfVideos, 0, n - 1);
-    if (stoi(sortByType) == 1)
+    else if (stoi(sortByType) == 2)
         quickSort("likes", listOfVideos, 0, n - 1);
-    if (stoi(sortByType) == 1)
+    else if (stoi(sortByType) == 3)
         quickSort("comments", listOfVideos, 0, n - 1);
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
