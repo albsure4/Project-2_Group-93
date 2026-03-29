@@ -83,7 +83,7 @@ std::cout << "1. United States\n2. Brazil\n3. Canada\n4. Germany\n5. France\n6. 
 std::string country;
 while (true){ // make sure number is between 1-11, else: retake input
     std::cin >> country;
-    if (stoi(country) > 11 || stoi(country) < 1){
+    if (stoi(country) > 12 || stoi(country) < 1){
         std::cerr << "Incorrect Input- Must be a number 1-11\n";
         continue;
     }
