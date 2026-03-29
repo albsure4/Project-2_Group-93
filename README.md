@@ -18,5 +18,8 @@ The program will prompt you to select:
 3. Sort By — View Count, Like Count, or Comment Count
 4. Display By — Channel Name, Category, or Video Name
 
+## NOTE: You must input the correct numbers for the program to execute properly. If not, the program will end. 
+## For example, if you're given options 1-3, only enter "1" "2" or "3".
+
 The top 10 results and the time taken to sort will be printed to the console.
 
